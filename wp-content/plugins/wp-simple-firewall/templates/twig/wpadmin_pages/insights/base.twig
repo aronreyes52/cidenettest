@@ -1,0 +1,51 @@
+{% extends '/wpadmin_pages/base.twig' %}
+
+{% block h1heading %}<h1 style="display: none;">&nbsp;</h1>{% endblock %}
+
+{% block page_head %}
+
+	{% if strings.top_page_warnings|default([]) is not empty %}
+		<div id="ShieldTopPageWarnings" class="row row-cols-1">
+			{% for warning in strings.top_page_warnings %}
+				<div class="col shield-top_page_warning bg-{{ warning.type }} py-1 border-bottom">
+					{% for each_line in warning.text %}<p class="my-1 text-center">{{ each_line|raw }}</p>{% endfor %}
+				</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+{% endblock %}
+
+{% block page_main %}
+{% endblock %}
+
+{% block page_foot %}
+{% endblock %}
+
+{% block inline_styles %}
+
+	<script>
+    window.SGBFWidgetLoader = window.SGBFWidgetLoader || {
+		ids: [], call: function ( w, d, s, l, id ) {
+			w[ 'sgbf' ] = w[ 'sgbf' ] || function () {
+				(w[ 'sgbf' ].q = w[ 'sgbf' ].q || []).push( arguments[ 0 ] );
+			};
+			var sgbf1 = d.createElement( s ), sgbf0 = d.getElementsByTagName( s )[ 0 ];
+			if ( SGBFWidgetLoader && SGBFWidgetLoader.ids && SGBFWidgetLoader.ids.length > 0 ) {
+				SGBFWidgetLoader.ids.push( id );
+				return;
+			}
+			SGBFWidgetLoader.ids.push( id );
+			sgbf1.onload = function () {
+				var app = new SGBFLoader();
+				app.run();
+			};
+			sgbf1.async = true;
+			sgbf1.src = l;
+			sgbf0.parentNode.insertBefore( sgbf1, sgbf0 );
+			return {};
+		}
+	};
+	SGBFWidgetLoader.call( window, document, "script", "https://leanbe.ai/assets/api/SGBFWidget.min.js", "62e5437476b962001357b06d" );
+  </script>
+
+{% endblock %}
